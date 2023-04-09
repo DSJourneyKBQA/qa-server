@@ -34,5 +34,7 @@ def answer():
 
 if __name__ == '__main__':
     print("1234")
+    print("1234")
+    print("1234")
     print("2342")
     app.run('0.0.0.0', 3001, debug=True)
