@@ -59,7 +59,7 @@ HanLP = hanlp.load(hanlp.pretrained.mtl.CLOSE_TOK_POS_NER_SRL_DEP_SDP_CON_ELECTR
 # segment = HanLP.newSegment().enableCustomDictionaryForcing(True)
 pos = HanLP['pos/pku']
 tok = TaggingTokenization = HanLP['tok/fine']
-custom_dict = json.load(open('intent_recognition/entitys.json', 'r', encoding='utf-8'))
+custom_dict = json.load(open('build_kg/data/entitys.json', 'r', encoding='utf-8'))
 tok.dict_combine = set([item.lower() for item in custom_dict])
 pd = {}
 for key in custom_dict:
