@@ -1,8 +1,8 @@
+import json,os,pickle
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import pickle
-import os
 
 words_path = "intent_recognition/words.pkl"
 with open(words_path, 'rb') as f_words:
@@ -59,12 +59,12 @@ HanLP = hanlp.load(hanlp.pretrained.mtl.CLOSE_TOK_POS_NER_SRL_DEP_SDP_CON_ELECTR
 # segment = HanLP.newSegment().enableCustomDictionaryForcing(True)
 pos = HanLP['pos/pku']
 tok = TaggingTokenization = HanLP['tok/fine']
-tok.dict_combine = {'Vue', 'React', '条件渲染', '反恐精英', '反恐精英online'}
-
-pos.dict_tags = {'Vue': 'kp', 'React': 'kp', '条件渲染': 'kp', '反恐精英online': 'kp', '反恐精英': 'kp'}
-
-
-# 分词，需要将电影名，演员名和评分数字转为nm，nnt，ng
+custom_dict = json.load(open('intent_recognition/entitys.json', 'r', encoding='utf-8'))
+tok.dict_combine = set([item.lower() for item in custom_dict])
+pd = {}
+for key in custom_dict:
+    pd[key.lower()] = 'kp'
+pos.dict_tags = pd
 def sentence_segment(sentence):
     result = HanLP([sentence])
 
@@ -75,32 +75,28 @@ def sentence_segment(sentence):
         index += 1
     print(word_nature)
     sentence_words = []
+    entitys = []
     for term in word_nature:
         print(term)
         if str(term['nature']) == 'kp':
+            entitys.append(term['word'])
             sentence_words.append('kp')
-        # elif str(term['nature']) == 'nm':
-        #     sentence_words.append('nm')
-        # elif str(term['nature']) == 'ng':
-        #     sentence_words.append('ng')
-        # elif str(term['nature']) == 'm':
-        #     sentence_words.append('x')
         else:
             sentence_words.extend(list(term['word']))
     print(sentence_words)
-    return sentence_words
+    return sentence_words,entitys
 
 
 def bow(sentence, words, show_detail=True):
-    sentence_words = sentence_segment(sentence)
+    sentence_words,entitys = sentence_segment(sentence)
     indexed = [words.stoi[t] for t in sentence_words]
     src_tensor = torch.LongTensor(indexed)
     src_tensor = src_tensor.unsqueeze(0)
-    return src_tensor
+    return src_tensor,entitys
 
 
 def predict_class(sentence, model):
-    sentence_bag = bow(sentence, words, False)
+    sentence_bag,entitys = bow(sentence, words, False)
     model.eval()
     with torch.no_grad():
         outputs = model(sentence_bag)
@@ -110,7 +106,7 @@ def predict_class(sentence, model):
     print('softmax_index:{}'.format(predicted_index))
     results = []
     #results.append({'intent':index_classes[predicted_index.detach().numpy()[0]], 'prob':predicted_prob.detach().numpy()[0]})
-    results.append({'intent': predicted_index.detach().numpy()[0], 'prob': predicted_prob.detach().numpy()[0]})
+    results.append({'intent': predicted_index.detach().numpy()[0], 'prob': predicted_prob.detach().numpy()[0], 'entitys': entitys})
     print('result:{}'.format(results))
     return results
 
@@ -122,15 +118,4 @@ def get_response(predict_result):
 
 def predict(text):
     predict_result = predict_class(text, model)
-    # res = get_response(predict_result)
-    # return res
-    return {'intent': int(predict_result[0]['intent']), 'prob': float(predict_result[0]['prob'])}
-
-
-# print(predict("Vue怎么用"))
-# print(predict("反恐精英咋用"))
-# print(predict("玩反恐精英要先学什么"))
-# print(predict("玩反恐精英online要先学什么"))
-# print(predict("反恐精英包括什么"))
-# print(predict("反恐精英包括什么"))
-# print(predict("反恐精英的条件渲染是什么"))
+    return {'intent': int(predict_result[0]['intent']), 'prob': float(predict_result[0]['prob']), 'entitys': predict_result[0]['entitys']}
