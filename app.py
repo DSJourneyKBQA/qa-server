@@ -33,4 +33,5 @@ def answer():
 
 
 if __name__ == '__main__':
+    print("1234")
     app.run('0.0.0.0', 3001, debug=True)
