@@ -26,10 +26,30 @@ class KnowledgeGraph(object):
         for node in json_data:
             self.__extract_node(json_data[node], node)
 
+    def extract_article(self, file_path):
+        print('从数据中提取文章')
+        with open(file_path, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        index = 0
+        for node in json_data:
+            self.__extract_article(node, index)
+            index +=1
+
+    def __extract_article(self,data,index):
+        print(data)
+        node_name = f'article_{index}'
+        self.k_articles.append(node_name)
+        node_id = str(self.__create_node(node_name, '文章'))
+        print(f'写入实体 {node_name},id:{node_id}')
+        for tag in data['tags']:
+            r_id = self.__create_node(tag['word'], '知识点',ignore=True)
+            self.r_tag.append([node_id, 'has_tag', r_id])
+
     def __extract_node(self, node, node_name, parent_id=None):
         self.k_points.append(node_name)
         node_id = str(self.__create_node(node_name, '知识点', parent_id))
-        print(f'写入实体 {node_name},id:{node_id}')
+        print(f'写入实体 {node_name},id:{node_id},parent:{parent_id}')
+        print(1)
         self.nodes.append(node_name)
         if parent_id:
             self.r_child.append([parent_id, 'has_child', node_id])
@@ -49,8 +69,11 @@ class KnowledgeGraph(object):
             desc_id = self.__create_node(node, '描述', node_id)
             self.r_desc.append([node_id, 'has_desc', desc_id])
 
-    def __create_node(self, name, label, parent=None) -> int:
-        if parent is None:
+    def __create_node(self, name, label, parent=None,ignore = False) -> int:
+        name = name.lower()
+        if ignore:
+            cql = f'MERGE (n:{label} {{name:"{name}"}}) RETURN id(n) as id'
+        elif parent is None:
             cql = f'MERGE (n:{label} {{name:"{name}",parent:"ROOT"}}) RETURN id(n) as id'
         else:
             cql = f'MERGE (n:{label} {{name:"{name}",parent:"{parent}"}}) RETURN id(n) as id'
@@ -76,8 +99,8 @@ class KnowledgeGraph(object):
         self.write_relations(self.r_desc, '知识点', '描述')
         self.write_relations(self.r_require, '知识点', '知识点')
         self.write_relations(self.r_child, '知识点', '知识点')
-        self.write_relations(self.r_tag, '知识点', '标签')
-        
+        self.write_relations(self.r_tag, '文章', '知识点')
+
     def extarct_entitys(self):
         with open('./data/entitys.json', 'w', encoding='utf-8') as f:
             json.dump(list(set(self.nodes)), f,ensure_ascii=False, indent=4)
@@ -87,5 +110,6 @@ if __name__ == '__main__':
     kg = KnowledgeGraph()
     kg.clear_database()
     kg.extract('./data/data.json')
+    kg.extract_article('./data/articles.json')
     kg.create_relations()
     kg.extarct_entitys()

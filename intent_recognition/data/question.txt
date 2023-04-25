@@ -21,6 +21,7 @@ kp咋地用
 kp怎么样用
 kp应该如何使用
 kp的正确用法是什么
+怎么用kp
 如何使用kp
 怎样才能用好kp
 
@@ -61,7 +62,6 @@ kp学习需要哪些前置技能
 学习kp需要具备哪些相关的知识和技能
 
 dataset:6
-kp的kp
 kp的kp是
 kp的kp是什么
 kp的kp是什么意思
@@ -71,16 +71,6 @@ kp的kp指的是什么
 kp的kp代表了什么
 kp的kp的定义是什么
 kp的kp代表着什么概念
-kpkp
-kpkp是
-kpkp是什么
-kpkp是什么意思
-什么是kpkp
-kpkp含义是什么
-kpkp指是什么
-kpkp代表了什么
-kpkp定义是什么
-kpkp代表着什么概念
 
 dataset:7
 kp的kp要怎样使用
@@ -137,14 +127,3 @@ kp和kp有哪些重叠之处
 kp和kp的联系是什么
 kp和kp有着怎样的共同点
 kp和kp有何异同
-
-dataset:10
-你好
-你好啊
-最近好吗
-你是
-你是谁
-关于
-关于你
-你是谁啊
-你是什么东西

@@ -130,60 +130,15 @@
           "id选择器": "id选择器用于选择id属性值为指定值的元素"
         }
       },
-      "class选择器": {
-        "description": "class选择器用于选择class属性值为指定值的元素",
-        "children": {
-          "class选择器": "class选择器用于选择class属性值为指定值的元素"
-        }
-      },
-      "属性选择器": {
-        "description": "属性选择器用于选择具有指定属性的元素",
-        "children": {
-          "属性选择器": "属性选择器用于选择具有指定属性的元素"
-        }
-      },
-      "伪类选择器": {
-        "description": "伪类选择器用于选择特定状态的元素",
-        "children": {
-          "伪类选择器": "伪类选择器用于选择特定状态的元素"
-        }
-      },
-      "伪元素选择器": {
-        "description": "伪元素选择器用于选择特定部分的元素",
-        "children": {
-          "伪元素选择器": "伪元素选择器用于选择特定部分的元素"
-        }
-      },
-      "组合选择器": {
-        "description": "组合选择器用于选择多个元素",
-        "children": {
-          "组合选择器": "组合选择器用于选择多个元素"
-        }
-      },
-      "继承": {
-        "description": "继承是指子元素会继承父元素的样式",
-        "children": {
-          "继承": "继承是指子元素会继承父元素的样式"
-        }
-      },
-      "层叠": {
-        "description": "层叠是指样式的优先级",
-        "children": {
-          "层叠": "层叠是指样式的优先级"
-        }
-      },
-      "优先级": {
-        "description": "优先级是指样式的优先级",
-        "children": {
-          "优先级": "优先级是指样式的优先级"
-        }
-      },
-      "盒模型": {
-        "description": "盒模型是指元素的大小和位置",
-        "children": {
-          "盒模型": "盒模型是指元素的大小和位置"
-        }
-      }
+      "class选择器": "class选择器用于选择class属性值为指定值的元素",
+      "属性选择器": "属性选择器用于选择具有指定属性的元素",
+      "伪类选择器": "伪类选择器用于选择特定状态的元素",
+      "伪元素选择器":  "伪元素选择器用于选择特定部分的元素",
+      "组合选择器": "组合选择器用于选择多个元素",
+      "继承":  "继承是指子元素会继承父元素的样式",
+      "层叠": "层叠是指样式的优先级",
+      "优先级":"优先级是指样式的优先级",
+      "盒模型":  "盒模型是指元素的大小和位置"
     }
   },
   "JavaScript": {
@@ -192,114 +147,24 @@
       "HTML"
     ],
     "children": {
-      "数据类型": {
-        "description": "数据类型是指变量的类型",
-        "children": {
-          "数据类型": "数据类型是指变量的类型"
-        }
-      },
-      "运算符": {
-        "description": "运算符是指用于操作变量的符号",
-        "children": {
-          "运算符": "运算符是指用于操作变量的符号"
-        }
-      },
-      "流程控制": {
-        "description": "流程控制是指控制程序的执行顺序",
-        "children": {
-          "流程控制": "流程控制是指控制程序的执行顺序"
-        }
-      },
-      "函数": {
-        "description": "函数是指封装一段代码的结构",
-        "children": {
-          "函数": "函数是指封装一段代码的结构"
-        }
-      },
-      "数组": {
-        "description": "数组是指存储多个变量的结构",
-        "children": {
-          "数组": "数组是指存储多个变量的结构"
-        }
-      },
-      "对象": {
-        "description": "对象是指存储多个变量的结构",
-        "children": {
-          "对象": "对象是指存储多个变量的结构"
-        }
-      },
-      "DOM": {
-        "description": "DOM是指文档对象模型",
-        "children": {
-          "DOM": "DOM是指文档对象模型"
-        }
-      },
-      "BOM": {
-        "description": "BOM是指浏览器对象模型",
-        "children": {
-          "BOM": "BOM是指浏览器对象模型"
-        }
-      },
-      "事件": {
-        "description": "事件是指用户或浏览器的行为",
-        "children": {
-          "事件": "事件是指用户或浏览器的行为"
-        }
-      },
-      "正则表达式": {
-        "description": "正则表达式是指用于匹配字符串的模式",
-        "children": {
-          "正则表达式": "正则表达式是指用于匹配字符串的模式"
-        }
-      },
-      "JSON": {
-        "description": "JSON是指JavaScript对象表示法",
-        "children": {
-          "JSON": "JSON是指JavaScript对象表示法"
-        }
-      },
-      "Ajax": {
-        "description": "Ajax是指异步JavaScript和XML",
-        "children": {
-          "Ajax": "Ajax是指异步JavaScript和XML"
-        }
-      },
-      "ES6": {
-        "description": "ES6是指ECMAScript 6",
-        "children": {
-          "ES6": "ES6是指ECMAScript 6"
-        }
-      },
-      "ES7": {
-        "description": "ES7是指ECMAScript 7",
-        "children": {
-          "ES7": "ES7是指ECMAScript 7"
-        }
-      },
-      "ES8": {
-        "description": "ES8是指ECMAScript 8",
-        "children": {
-          "ES8": "ES8是指ECMAScript 8"
-        }
-      },
-      "ES9": {
-        "description": "ES9是指ECMAScript 9",
-        "children": {
-          "ES9": "ES9是指ECMAScript 9"
-        }
-      },
-      "ES10": {
-        "description": "ES10是指ECMAScript 10",
-        "children": {
-          "ES10": "ES10是指ECMAScript 10"
-        }
-      },
-      "ES11": {
-        "description": "ES11是指ECMAScript 11",
-        "children": {
-          "ES11": "ES11是指ECMAScript 11"
-        }
-      }
+      "数据类型":  "数据类型是指变量的类型",
+      "运算符": "运算符是指用于操作变量的符号",
+      "流程控制":"流程控制是指控制程序的执行顺序",
+      "函数": "函数是指封装一段代码的结构",
+      "数组":"数组是指存储多个变量的结构",
+      "对象": "对象是指存储多个变量的结构",
+      "DOM": "DOM是指文档对象模型",
+      "BOM": "BOM是指浏览器对象模型",
+      "事件": "事件是指用户或浏览器的行为",
+      "正则表达式":"正则表达式是指用于匹配字符串的模式",
+      "JSON": "JSON是指JavaScript对象表示法",
+      "Ajax":  "Ajax是指异步JavaScript和XML",
+      "ES6":  "ES6是指ECMAScript 6",
+      "ES7":  "ES7是指ECMAScript 7",
+      "ES8":"ES8是指ECMAScript 8",
+      "ES9": "ES9是指ECMAScript 9",
+      "ES10": "ES10是指ECMAScript 10",
+      "ES11":  "ES11是指ECMAScript 11"
     }
   },
   "Vue": {
@@ -334,30 +199,10 @@
           "router-link": "router-link组件用于页面跳转，可以跳转到不同的页面"
         }
       },
-      "vue组件": {
-        "description": "vue组件指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
-        "children": {
-          "vue组件": "vue组件用于页面跳转，可以跳转到不同的页面"
-        }
-      },
-      "vue路由": {
-        "description": "vue路由指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
-        "children": {
-          "vue路由": "vue路由用于页面跳转，可以跳转到不同的页面"
-        }
-      },
-      "vue生命周期": {
-        "description": "vue生命周期指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
-        "children": {
-          "vue生命周期": "vue生命周期用于页面跳转，可以跳转到不同的页面"
-        }
-      },
-      "vue插槽": {
-        "description": "vue插槽指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
-        "children": {
-          "vue插槽": "vue插槽用于页面跳转，可以跳转到不同的页面"
-        }
-      }
+      "vue组件": "vue组件指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
+      "vue路由": "vue路由指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
+      "vue生命周期": "vue生命周期指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转",
+      "vue插槽":  "vue插槽指的是根据条件来跳转到不同的页面，Vue.js提供了router-link组件来实现页面跳转"
     }
   },
   "React": {
@@ -382,78 +227,18 @@
           "map": "map方法用于列表渲染，可以遍历数组或对象"
         }
       },
-      "正则表达式": {
-        "description": "正则表达式是指用于匹配字符串的模式",
-        "children": {
-          "正则表达式": "正则表达式是指用于匹配字符串的模式"
-        }
-      },
-      "生命周期": {
-        "description": "生命周期是指组件从创建到销毁的过程",
-        "children": {
-          "生命周期": "生命周期是指组件从创建到销毁的过程"
-        }
-      },
-      "路由": {
-        "description": "路由是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "路由": "路由是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "JSON": {
-        "description": "JSON是指JavaScript对象表示法",
-        "children": {
-          "JSON": "JSON是指JavaScript对象表示法"
-        }
-      },
-      "组件": {
-        "description": "组件是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "组件": "组件是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "状态管理": {
-        "description": "状态管理是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "状态管理": "状态管理是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "Redux": {
-        "description": "Redux是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "Redux": "Redux是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "React-Redux": {
-        "description": "React-Redux是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "React-Redux": "React-Redux是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "React-Router": {
-        "description": "React-Router是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "React-Router": "React-Router是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "React-Router-Redux": {
-        "description": "React-Router-Redux是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "React-Router-Redux": "React-Router-Redux是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "React-Router-Config": {
-        "description": "React-Router-Config是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "React-Router-Config": "React-Router-Config是指根据不同的路径来渲染不同的组件"
-        }
-      },
-      "React-Router-Dom": {
-        "description": "React-Router-Dom是指根据不同的路径来渲染不同的组件",
-        "children": {
-          "React-Router-Dom": "React-Router-Dom是指根据不同的路径来渲染不同的组件"
-        }
-      }
+      "正则表达式":"正则表达式是指用于匹配字符串的模式",
+      "生命周期":"生命周期是指组件从创建到销毁的过程",
+      "路由": "路由是指根据不同的路径来渲染不同的组件",
+      "JSON": "JSON是指JavaScript对象表示法",
+      "组件": "组件是指根据不同的路径来渲染不同的组件",
+      "状态管理": "状态管理是指根据不同的路径来渲染不同的组件",
+      "Redux":"Redux是指根据不同的路径来渲染不同的组件",
+      "React-Redux": "React-Redux是指根据不同的路径来渲染不同的组件",
+      "React-Router": "React-Router是指根据不同的路径来渲染不同的组件",
+      "React-Router-Redux":  "React-Router-Redux是指根据不同的路径来渲染不同的组件",
+      "React-Router-Config": "React-Router-Config是指根据不同的路径来渲染不同的组件",
+      "React-Router-Dom": "React-Router-Dom是指根据不同的路径来渲染不同的组件"
     }
   }
 }

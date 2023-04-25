@@ -1,8 +1,9 @@
+import random
 import pandas as pd
 
 dataset_name = '0'
-label_list = []
-text_list = []
+
+dataset_list = []
 
 
 with open('./data/question.txt', 'r',encoding='utf-8') as f:
@@ -16,11 +17,16 @@ with open('./data/question.txt', 'r',encoding='utf-8') as f:
             dataset_name = line.split(':')[1]
             line = f.readline()
             continue
-        label_list.append(dataset_name)
-        text_list.append(' '.join(line.replace('\n', '')).replace('k p', 'kp'))
+        dataset_list.append({
+            'label': dataset_name,
+            'text': ' '.join(line.replace('\n', '')).replace('k p', 'kp')
+        })
 
         line = f.readline()
 
+dataset_list.sort(key=lambda x: random.random())
+label_list = [i['label'] for i in dataset_list]
+text_list = [i['text'] for i in dataset_list]
 print(label_list)
 print(text_list)
 

@@ -48,17 +48,14 @@ class TextRCNN(nn.Module):
 
 
 model = TextRCNN(len(words), 300, 128, 2, 16)
-model_path = os.path.join(os.getcwd(), "intent_recognition/model.h5")
+model_path = "intent_recognition/model.h5"
 model.load_state_dict(torch.load(model_path))
 
-# from pyhanlp import HanLP
 import hanlp
 
-HanLP = hanlp.load(hanlp.pretrained.mtl.CLOSE_TOK_POS_NER_SRL_DEP_SDP_CON_ELECTRA_SMALL_ZH)
+pos = hanlp.load(hanlp.pretrained.pos.PKU_POS_ELECTRA_SMALL)
+tok = hanlp.load(hanlp.pretrained.tok.FINE_ELECTRA_SMALL_ZH)
 
-# segment = HanLP.newSegment().enableCustomDictionaryForcing(True)
-pos = HanLP['pos/pku']
-tok = TaggingTokenization = HanLP['tok/fine']
 custom_dict = json.load(open('build_kg/data/entitys.json', 'r', encoding='utf-8'))
 tok.dict_combine = set([item.lower() for item in custom_dict])
 pd = {}
@@ -66,24 +63,22 @@ for key in custom_dict:
     pd[key.lower()] = 'kp'
 pos.dict_tags = pd
 def sentence_segment(sentence):
-    result = HanLP([sentence])
-
+    result_tok = tok(sentence)
+    result_pos = pos(result_tok)
     word_nature = []
-    index = 0
-    for term in result['tok/fine'][0]:
-        word_nature.append({'word': term, 'nature': result['pos/pku'][0][index]})
-        index += 1
-    print(word_nature)
+    for i in range(len(result_tok)):
+        word_nature.append({'word': result_tok[i], 'nature': result_pos[i]})
+    # print(word_nature)
     sentence_words = []
     entitys = []
-    for term in word_nature:
-        print(term)
-        if str(term['nature']) == 'kp':
-            entitys.append(term['word'])
+    for item in word_nature:
+        print(item)
+        if str(item['nature']) == 'kp':
+            entitys.append(item['word'])
             sentence_words.append('kp')
         else:
-            sentence_words.extend(list(term['word']))
-    print(sentence_words)
+            sentence_words.extend(list(item['word']))
+    # print(sentence_words)
     return sentence_words,entitys
 
 
