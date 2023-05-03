@@ -99,7 +99,7 @@ class KnowledgeGraph(object):
         self.write_relations(self.r_desc, '知识点', '描述')
         self.write_relations(self.r_require, '知识点', '知识点')
         self.write_relations(self.r_child, '知识点', '知识点')
-        self.write_relations(self.r_tag, '文章', '知识点')
+        # self.write_relations(self.r_tag, '文章', '知识点')
 
     def extarct_entitys(self):
         with open('./data/entitys.json', 'w', encoding='utf-8') as f:
@@ -110,6 +110,6 @@ if __name__ == '__main__':
     kg = KnowledgeGraph()
     kg.clear_database()
     kg.extract('./data/data.json')
-    kg.extract_article('./data/articles.json')
+    # kg.extract_article('./data/articles.json')
     kg.create_relations()
     kg.extarct_entitys()

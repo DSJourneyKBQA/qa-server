@@ -1,7 +1,8 @@
-import time
+import time,sys
 
 from flask import Flask, request
 from flask_cors import CORS
+from gevent import pywsgi
 
 from utils import Result as R,UnitBot
 from intent_recognition import predict,similarity_match
@@ -10,6 +11,7 @@ from graph_query import GraphQuery
 UNIT_CLIENT_ID = 'Z7KiGkCWNG5WzNUQoKtLDxbh'
 UNIT_CLIENT_SECRET = 'rnGquVn3O9FlQONPuUQlmBLGHfX72xcI'
 UNIT_BOT_ID = 'S86288'
+
 
 app = Flask('study')
 cors=CORS(app, resources={r"/api/*": {"origins": "*"}})
@@ -62,4 +64,8 @@ def answer():
     # return R.ok(f'识别到意图{res["intent"]}',res)
 
 if __name__ == '__main__':
-    app.run('0.0.0.0',3001,debug=True)
+    if len(sys.argv) > 1 and sys.argv[1] == 'dev':
+        app.run('0.0.0.0',3001,debug=True)
+    else:
+        server = pywsgi.WSGIServer(('0.0.0.0', 3001), app)
+        server.serve_forever()
