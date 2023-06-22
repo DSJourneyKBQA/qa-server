@@ -50,6 +50,83 @@ class GraphQuery():
         for item in result:
             msg += item['n']['name'] + ','
         return msg[:-1]
+    
+    def get_roadmap(self):
+        
+        start = 'Go语言'
+        end = '分布式文件存储'
+        result_main = self.graph.run(f'match p = (endn:`知识点`)-[r:require*..10]-(startn:`知识点`) where startn.name="{start}" AND endn.name="{end}" return p').data()
+        result_has_child = self.graph.run(f'match (p:`知识点`)-[r:has_child]->(q:`知识点`) return p,q,r').data()
+        # result_has_tag = self.graph.run(f'match (p:`文章`)-[r:has_tag]->(q:`知识点`) return p,q,r').data()
+        result_entitys = self.graph.run(f'match (p:`知识点`) return p').data()
+        
+        nodes = []
+        rels = []
+        for path in result_main:
+            for node in path['p'].nodes:
+                nodes.append({
+                    'name': node['name'],
+                    'type': 'main'
+                })
+            for rel in path['p'].relationships:
+                rels.append({
+                    'start':rel.start_node['name'],
+                    'end':rel.end_node['name'],
+                    'type':type(rel).__name__,
+                })
+        for res in result_has_child:
+            if res['r'].end_node['name'] not in [node['name'] for node in nodes]:
+                nodes.append({
+                    'name': res['r'].end_node['name'],
+                    'type' : 'sub'
+                })
+            rels.append({
+                'start':res['r'].start_node['name'],
+                'end':res['r'].end_node['name'],
+                'type':type(res['r']).__name__,
+            })
+        # for res in result_has_tag:
+        #     if res['r'].start_node['name'] not in [node['name'] for node in nodes]:
+        #         nodes.append({
+        #             'name': res['r'].start_node['name'],
+        #             'type' : 'article'
+        #         })
+        #     rels.append({
+        #         'start':res['r'].start_node['name'],
+        #         'end':res['r'].end_node['name'],
+        #         'type':type(res['r']).__name__,
+            # })
+        for entity in result_entitys:
+            if entity['p']['name'] not in [node['name'] for node in nodes]:
+                nodes.append({
+                    'name': entity['p']['name'],
+                    'type' : 'sub'
+                })
+        return {
+                'nodes':nodes,
+                'rels':rels,
+            }
+    def get_entity_roadmap(self,entity:str):
+        result_has_tag = self.graph.run(f'match (p:`文章`)-[r:has_tag]->(q:`知识点`) where q.name="{entity}" return p,q,r').data()
+        print(result_has_tag)
+        print(entity)
+        nodes = []
+        rels = []
+        for res in result_has_tag:
+            if res['r'].start_node['name'] not in [node['name'] for node in nodes]:
+                nodes.append({
+                    'name': res['r'].start_node['name'],
+                    'type' : 'article'
+                })
+            rels.append({
+                'start':res['r'].start_node['name'],
+                'end':res['r'].end_node['name'],
+                'type':type(res['r']).__name__,
+            })
+        return {
+                'nodes':nodes,
+                'rels':rels,
+            }
 if __name__ == "__main__":
     neo4j = GraphQuery()
     print(neo4j.get_desc("Vue"))

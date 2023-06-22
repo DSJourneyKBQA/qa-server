@@ -1,4 +1,4 @@
-import time,sys
+import time,sys,json
 
 from flask import Flask, request
 from flask_cors import CORS
@@ -62,6 +62,16 @@ def answer():
     return answer_impl(question)
     
     # return R.ok(f'识别到意图{res["intent"]}',res)
+    
+@app.route('/api/roadmap')
+def get_roadmap():
+    res = query.get_roadmap()
+    return R.ok(data=res)
+
+@app.route('/api/roadmap/<entity>')
+def get_entity_roadmap(entity):
+    res = query.get_entity_roadmap(entity)
+    return R.ok(data=res)
 
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'dev':

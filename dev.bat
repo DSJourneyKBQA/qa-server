@@ -1,1 +1,1 @@
-call python app.py debug
+call python app.py dev

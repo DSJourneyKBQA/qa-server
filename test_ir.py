@@ -53,18 +53,18 @@ dataset = [
         'question': '你们一个个都身怀绝技',
         'intent': -1
     },
-    # {
-    #     'question':'经典模型 DeepFM 原理详解及代码实践',
-    #     'intent': -1
-    # },
-    # {
-    #     'question':'大人时代变了',
-    #     'intent': -1
-    # },
-    # {
-    #     'question':'你妈什么时候死啊',
-    #     'intent': -1
-    # }
+    {
+        'question':'经典模型 DeepFM 原理详解及代码实践',
+        'intent': -1
+    },
+    {
+        'question':'大人时代变了',
+        'intent': -1
+    },
+    {
+        'question':'你妈什么时候死啊',
+        'intent': -1
+    }
 ]
 passall = True
 results = []
